@@ -1,16 +1,14 @@
-import './App.css'
+import "./App.css";
+import { Cars } from "./components/Cars";
+import { Counter } from "./components/Counter";
 
 function App() {
-  const user = {name: "Artem", age: 26, birthday: "18 october", profession: "electrician("};
-
   return (
     <div>
-      <h1>Hello, {user.name}</h1>
-      <p>Your age: {user.age}</p>
-      <p>Your birthday: {user.birthday}</p>
-      <p>Your profession: {user.profession}</p>
+      <Counter />
+      <Cars />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
