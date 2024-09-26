@@ -1,0 +1,13 @@
+.users-component {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.users-component .user-card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 10px;
+    background: #999494;
+}
