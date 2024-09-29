@@ -1,29 +1,15 @@
-import { useEffect, useState } from "react";
-import { API } from "../axios";
-import { UserType } from "../types/user.type";
+import { useContext, useEffect } from "react";
 import { UserCard } from "./UserCard";
-import "../styles/Users.css"
+import "../styles/Users.css";
+import { UserContext } from "../contexts/UserContext";
 
 export const Users = () => {
-  const [users, setUsers] = useState<UserType[]>([]);
-
-  const removeUser = (userId: number) => {
-    setUsers(users.filter((user) => user.id !== userId));
-  };
+  const { users, getAllUsers, updateAllUsers } = useContext(UserContext);
 
   useEffect(() => {
-    API.get("users")
-      .then((response) => {
-        setUsers(response.data);
-      })
-      .catch((err) => console.log(err));
-
+    getAllUsers();
     return () => {
-      return users.forEach((user) => {
-        API.patch(`users/${user.id}`, user)
-          .catch((res) => console.log(res.data))
-          .catch((err) => console.log(err));
-      });
+      updateAllUsers();
     };
   }, []);
   return (
@@ -32,7 +18,7 @@ export const Users = () => {
 
       {users.map((user) => (
         <div key={user.id}>
-          <UserCard key={user.id} user={user} removeUser={removeUser} />
+          <UserCard key={user.id} user={user} />
         </div>
       ))}
     </div>
